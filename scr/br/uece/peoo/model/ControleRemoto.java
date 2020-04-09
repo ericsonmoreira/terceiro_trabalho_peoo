@@ -43,6 +43,56 @@ public class ControleRemoto {
         }
     }
 
+    /**
+     *
+     */
+    public void aumentarVolume() {
+        this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.UP));
+    }
+
+    /**
+     *
+     */
+    public void diminuirVolume() {
+        this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.DOWN));
+    }
+
+    /**
+     *
+     * @param canal
+     */
+    public void sintonizarCanal(Canal canal) {
+        this.TVs.forEach(televisao -> televisao.setCanalAtual(canal));
+    }
+
+    /**
+     *
+     */
+    public void proximoCanal() {
+        this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.UP));
+    }
+
+    /**
+     *
+     */
+    public void anteriorCanal() {
+        this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.DOWN));
+    }
+
+    /**
+     *
+     */
+    public void informarDados() {
+        this.TVs.forEach(Televisao::informarDados);
+    }
+
+    /**
+     * Imprime a grade de canais de cada TV cadastrada.
+     */
+    public void mostrarGrade() {
+        this.TVs.forEach(televisao -> televisao.mostarGrade());
+    }
+
     @Override
     public String toString() {
         return "ControleRemoto{" +
