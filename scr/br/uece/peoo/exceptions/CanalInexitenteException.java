@@ -8,4 +8,5 @@ public class CanalInexitenteException extends Exception{
         super(message);
         this.numCanal = numCanal;
     }
+
 }

@@ -45,4 +45,14 @@ public class SmartTV extends Televisao {
         for (Canal canal: canais) this.canaisCadastrados.add(canal);
         this.canalAtual = this.canaisCadastrados.get(0);
     }
+
+    @Override
+    public String toString() {
+        return "SmartTV{" +
+                "polegadas=" + polegadas +
+                ", id='" + id + '\'' +
+                ", volume=" + volume +
+                ", canalAtual=" + canalAtual +
+                '}';
+    }
 }

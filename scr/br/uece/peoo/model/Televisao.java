@@ -71,6 +71,7 @@ public abstract class Televisao {
         this.id = id;
         this.volume = 5; // configuração padão.
         this.canaisDisponiveis = canaisDisponiveis;
+        this.canaisCadastrados = new ArrayList<Canal>();
     }
 
     /**
@@ -129,7 +130,7 @@ public abstract class Televisao {
      * dados de cada canal. Ordenados pelo numero do canal.
      */
     public void mostarGrade() {
-        System.out.println(this.getClass().getSimpleName() + "{id=" + id + ", canalAtual=" + canalAtual + "}");
+        System.out.println(this.getClass().getSimpleName() + "{id=" + id + ", volume="+ volume +  ", canalAtual=" + canalAtual + "}");
         // Ordenados pelo numero do canal.
         this.canaisCadastrados.stream().sorted(Comparator.comparing(Canal::getNumero)).
                 forEach(canal -> System.out.println("\t" + canal));

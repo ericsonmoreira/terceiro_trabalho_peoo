@@ -41,4 +41,13 @@ public class TVHD extends Televisao {
         this.canalAtual = this.canaisCadastrados.get(canaisCadastrados.size() - 1);
     }
 
+    @Override
+    public String toString() {
+        return "TVHD{" +
+                "modelo=" + modelo +
+                ", id='" + id + '\'' +
+                ", volume=" + volume +
+                ", canalAtual=" + canalAtual +
+                '}';
+    }
 }
