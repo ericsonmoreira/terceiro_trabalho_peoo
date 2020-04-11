@@ -4,19 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Crie uma classe ControleRemoto que pode manipular uma lista de televisões, sejam elas
- * SmartTvs ou TVHDs (use polimorfismo, ou seja, considere todas do tipo Televisão), ao
- * mesmo tempo. Portanto, o controle tem como atributo a lista de TVs que ele controla.
- * Crie um método para adicionar TV, que recebe um objeto do tipo Televisão e o adiciona na
- * lista de TVs apenas se a TV não estiver cadastrada. Se já estiver, dispare uma exceção de
- * TV já cadastrada.
+ * Classe que representa um Controle Remoto
  */
 public class ControleRemoto {
 
-    private List<Televisao> TVs;
+    private List<Televisao> TVs; // lista de televisores
 
     /**
-     * Construtor padrao.
+     * Construtor padrao da classe.
      */
     public ControleRemoto() {
         this.TVs = new ArrayList<Televisao>();
@@ -44,50 +39,50 @@ public class ControleRemoto {
     }
 
     /**
-     *
+     * Aumenta o volume de todas tvs
      */
     public void aumentarVolume() {
         this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.UP));
     }
 
     /**
-     *
+     * Diminui o volume de todas tvs
      */
     public void diminuirVolume() {
         this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.DOWN));
     }
 
     /**
-     *
-     * @param canal
+     * Muda o canal atual para um canal alvo.
+     * @param canal canal alvo.
      */
     public void sintonizarCanal(Canal canal) {
         this.TVs.forEach(televisao -> televisao.setCanalAtual(canal));
     }
 
     /**
-     *
+     * Muda o canal atual de todas tvs para o próximo canal.
      */
     public void proximoCanal() {
         this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.UP));
     }
 
     /**
-     *
+     * Muda o canal aual de todas tvs para o canal anterior.
      */
     public void anteriorCanal() {
         this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.DOWN));
     }
 
     /**
-     *
+     * Informa os dados de todas as tvs.
      */
     public void informarDados() {
         this.TVs.forEach(Televisao::informarDados);
     }
 
     /**
-     * Imprime a grade de canais de cada TV cadastrada.
+     * Mostra a grade de canais de cada TV cadastrada.
      */
     public void mostrarGrade() {
         this.TVs.forEach(televisao -> televisao.mostarGrade());

@@ -6,12 +6,26 @@ import br.uece.peoo.util.Menu;
 import java.sql.Array;
 import java.util.*;
 
-public class Main {
+/**
+ * Crie uma classe Principal na qual vários canais são criados (varie entre HDs e não HDs).
+ * Em seguida, crie pelo menos 2 TVs (uma de cada tipo), e cadastre os canais criados. Crie
+ * um objeto do controle remoto, associe a ele as TVs criadas, e ofereça ao usuário um menu
+ * com as opções disponíveis. Toda vez que o usuário escolhe uma opção, o método
+ * correspondente nas TVs é executado e o resultado é apresentado no console.
+ */
+public class Principal {
 
-    public static ControleRemoto controleRemoto;
+    public static ArrayList<Canal> CANAIS; // Lista de Canais
 
-    public static ArrayList<Canal> CANAIS;
+    public static SmartTV smartTV; // smartTV
 
+    public static TVHD tvhd; // televisão HD
+
+    public static ControleRemoto controleRemoto; // controleRemoto
+
+    /**
+     * Iniciando os canais, as
+     */
     public static void init() {
         CANAIS = new ArrayList<Canal>();
         // criando canais
@@ -32,8 +46,8 @@ public class Main {
 
         controleRemoto = new ControleRemoto();
 
-        SmartTV smartTV = new SmartTV("PHILCO1010", CANAIS);
-        TVHD tvhd = new TVHD("HPHDTV2020", CANAIS);
+        smartTV = new SmartTV("PHILCO1010", CANAIS);
+        tvhd = new TVHD("HPHDTV2020", CANAIS);
 
         smartTV.cadastrarCanais(CANAIS);
         tvhd.cadastrarCanais(CANAIS);
@@ -57,7 +71,8 @@ public class Main {
         menu.addOption(2, "- Volume", () -> controleRemoto.diminuirVolume());
         menu.addOption(3, "+ Canal", () -> controleRemoto.proximoCanal());
         menu.addOption(4, "- Canal", () -> controleRemoto.mostrarGrade());
-        menu.addOption(5, "Mostrar Grade", () -> controleRemoto.mostrarGrade());
+        menu.addOption(5, "- Canal", () -> controleRemoto.mostrarGrade());
+        menu.addOption(6, "Mostrar Grade", () -> sintonizarMenu());
 
         // opção para sair do programa
         menu.addOption(99, "Sair do Programa", () -> System.exit(0));
@@ -73,6 +88,17 @@ public class Main {
                 System.err.println("Opção invalida");
             }
         }
+    }
+
+    /**
+     * Mostra a lista de canais disponíveis e (tenta) altera o canal atual de cada
+     * Tv do controle remoto.
+     */
+    public static void sintonizarMenu() {
+        // TODO implementar.
+        // mostra os canais disponíveis.
+        // pega o numero do canal escolhido --- verificar aqui se o numéro é de um canal possivel
+        // para cada tv cadastrada do controle remoto, sintonizar o canal escolhido
     }
 
 }

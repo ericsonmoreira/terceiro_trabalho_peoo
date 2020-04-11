@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A segunda classe cadastra novos canais apenas se eles forem HD.
+ * Classe para representar uma Televisao HD
  */
 public class TVHD extends Televisao {
 
@@ -17,18 +17,11 @@ public class TVHD extends Televisao {
         LED, PLASMA, HD;
     }
 
-    /**
-     * Crie um construtor que receba como parâmetro a lista de canais disponíveis,
-     * atribua-a à sua lista interna, e configure o volume para 5.
-     *
-     * @param id
-     * @param canaisDisponiveis
-     */
+    private MODELO modelo; // Modelo da TVHD
+
     public TVHD(String id, ArrayList<Canal> canaisDisponiveis) {
         super(id, canaisDisponiveis);
     }
-
-    private MODELO modelo;
 
     /**
      * cadastra novos canais apenas se eles forem HD e, ao final, seta como canal

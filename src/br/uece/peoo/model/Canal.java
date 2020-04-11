@@ -1,12 +1,15 @@
 package br.uece.peoo.model;
 
+/**
+ * Classe para repsentear um Canal de Televisão.
+ */
 public class Canal {
 
-    private int numero;
+    private int numero; // número do canal
 
-    private String nome;
+    private String nome; // nome do canal
 
-    private boolean hd;
+    private boolean hd; // variável booleana para disser se o canal é ou não HD
 
     public int getNumero() {
         return numero;
@@ -24,14 +27,20 @@ public class Canal {
         this.nome = nome;
     }
 
-    public boolean isHd() {
-        return hd;
-    }
-
     public void setHd(boolean hd) {
         this.hd = hd;
     }
 
+    public boolean isHd() {
+        return hd;
+    }
+
+    /**
+     * Contrutor padrão da classe.
+     * @param numero número do
+     * @param nome nome do canal
+     * @param hd boobleando se o canal é HD
+     */
     public Canal(int numero, String nome, boolean hd) {
         this.numero = numero;
         this.nome = nome;
