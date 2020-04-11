@@ -1,5 +1,7 @@
 package br.uece.peoo.model;
 
+import br.uece.peoo.exceptions.CanalInexitenteException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,14 +44,14 @@ public class ControleRemoto {
      * Aumenta o volume de todas tvs
      */
     public void aumentarVolume() {
-        this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.UP));
+        this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.PROXIMO));
     }
 
     /**
      * Diminui o volume de todas tvs
      */
     public void diminuirVolume() {
-        this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.DOWN));
+        this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.ANTERIOR));
     }
 
     /**
@@ -57,21 +59,30 @@ public class ControleRemoto {
      * @param canal canal alvo.
      */
     public void sintonizarCanal(Canal canal) {
-        this.TVs.forEach(televisao -> televisao.setCanalAtual(canal));
+        this.TVs.forEach(televisao -> {
+            try {
+                televisao.sintonizar(canal.getNumero());
+            } catch (CanalInexitenteException e) {
+                System.err.println(
+                        "Não é possível sintonizar o Canal de num: " +
+                        e.getNumCanal() + " em Tv de id: " + televisao.getId() + "."
+                );
+            }
+        });
     }
 
     /**
      * Muda o canal atual de todas tvs para o próximo canal.
      */
     public void proximoCanal() {
-        this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.UP));
+        this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.PROXIMO));
     }
 
     /**
      * Muda o canal aual de todas tvs para o canal anterior.
      */
     public void anteriorCanal() {
-        this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.DOWN));
+        this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.ANTERIOR));
     }
 
     /**

@@ -1,5 +1,7 @@
 package br.uece.peoo.exceptions;
 
+import br.uece.peoo.model.Televisao;
+
 /**
  * Exceção chamada quando se tenta sintonizar um canal mas
  * ele não está entre a lista de canais disponíveis de uma TV.
@@ -7,6 +9,10 @@ package br.uece.peoo.exceptions;
 public class CanalInexitenteException extends Exception{
 
     private int numCanal; // número do canal.
+
+    public int getNumCanal() {
+        return numCanal;
+    }
 
     /**
      * Construtor padrão da classe.

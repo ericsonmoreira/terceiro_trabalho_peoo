@@ -67,16 +67,19 @@ public class Principal {
 
         Menu menu = new Menu();
 
-        menu.addOption(1, "+ Volume", () -> controleRemoto.aumentarVolume());
-        menu.addOption(2, "- Volume", () -> controleRemoto.diminuirVolume());
-        menu.addOption(3, "+ Canal", () -> controleRemoto.proximoCanal());
-        menu.addOption(4, "- Canal", () -> controleRemoto.mostrarGrade());
-        menu.addOption(5, "- Canal", () -> controleRemoto.mostrarGrade());
-        menu.addOption(6, "Mostrar Grade", () -> sintonizarMenu());
+        menu.addOption(1, "(+) Volume", () -> controleRemoto.aumentarVolume());
+        menu.addOption(2, "(-) Volume", () -> controleRemoto.diminuirVolume());
+        menu.addOption(3, "(+) Canal", () -> controleRemoto.proximoCanal());
+        menu.addOption(4, "(-) Canal", () -> controleRemoto.mostrarGrade());
+        menu.addOption(5, "Sintonizar Canal", () -> sintonizarMenu());
 
         // opção para sair do programa
         menu.addOption(99, "Sair do Programa", () -> System.exit(0));
 
+        // mostrar a grade
+        controleRemoto.mostrarGrade();
+
+        // loop do programa
         while (true) {
             Scanner scanner = new Scanner(System.in);
             menu.printMenu();
@@ -84,6 +87,7 @@ public class Principal {
             try {
                 int op = scanner.nextInt();
                 menu.getRunnable(op).run();
+                controleRemoto.mostrarGrade();
             } catch (InputMismatchException | NullPointerException err) {
                 System.err.println("Opção invalida");
             }
@@ -92,13 +96,21 @@ public class Principal {
 
     /**
      * Mostra a lista de canais disponíveis e (tenta) altera o canal atual de cada
-     * Tv do controle remoto.
+     * Tv do controle remoto de acordo com o canal escolhido. Caso uma tv do controle
+     * remoto não tenha o canal desejado em sua lista de canais cadastrados, mostra
+     * uma mensagem de erro.
      */
     public static void sintonizarMenu() {
-        // TODO implementar.
         // mostra os canais disponíveis.
-        // pega o numero do canal escolhido --- verificar aqui se o numéro é de um canal possivel
+        System.out.println("Canais");
+        CANAIS.forEach(System.out::println);
+        Scanner scanner = new Scanner(System.in);
+        int numCanal = scanner.nextInt();
         // para cada tv cadastrada do controle remoto, sintonizar o canal escolhido
+        Optional<Canal> optionalCanal = CANAIS.stream().filter(c -> c.getNumero() == numCanal).findFirst();
+        optionalCanal.ifPresentOrElse(
+                canal -> controleRemoto.sintonizarCanal(canal),
+                () -> System.err.println("Canal inválido"));
     }
 
 }

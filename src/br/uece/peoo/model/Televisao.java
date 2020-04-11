@@ -34,6 +34,10 @@ public abstract class Televisao {
 
     protected ArrayList<Canal> canaisDisponiveis;
 
+    public String getId() {
+        return id;
+    }
+
     public int getVolume() {
         return volume;
     }
@@ -100,11 +104,11 @@ public abstract class Televisao {
     public void sintonizar(int num) throws CanalInexitenteException {
         // tenta encontrar o canal nos canais cadastrados.
         Canal canalPossivel = this.canaisCadastrados.stream().
-                filter(canal -> canal.getNumero() == num).findFirst().get();
+                filter(canal -> canal.getNumero() == num).findFirst().orElse(null);
         if (verificarCanalExistente(canalPossivel)) {
             this.canalAtual = canalPossivel;
         } else { // se não encontrar, dispara essa exception
-            throw new CanalInexitenteException("Canal não exite", num);
+            throw new CanalInexitenteException("Canal não cadastrado." , num);
         }
     }
 
