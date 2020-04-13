@@ -1,6 +1,7 @@
 package br.uece.peoo.model;
 
 import br.uece.peoo.exceptions.CanalInexitenteException;
+import br.uece.peoo.exceptions.TvJaCadastradaException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +33,9 @@ public class ControleRemoto {
      *
      * @param televisao
      */
-    public void addTv(Televisao televisao) throws Exception {
+    public void addTv(Televisao televisao) throws TvJaCadastradaException {
         if (this.TVs.contains(televisao)) {
-            throw new Exception("Televisao já cadastrada: " + televisao);
+            throw new TvJaCadastradaException("Televisao já cadastrada", televisao);
         } else {
             this.TVs.add(televisao);
         }
@@ -63,10 +64,7 @@ public class ControleRemoto {
             try {
                 televisao.sintonizar(canal.getNumero());
             } catch (CanalInexitenteException e) {
-                System.err.println(
-                        "Não é possível sintonizar o Canal de num: " +
-                        e.getNumCanal() + " em Tv de id: " + televisao.getId() + "."
-                );
+                System.err.println(e.getMessage());
             }
         });
     }

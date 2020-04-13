@@ -10,18 +10,22 @@ public class CanalInexitenteException extends Exception{
 
     private int numCanal; // número do canal.
 
-    public int getNumCanal() {
-        return numCanal;
-    }
+    private Televisao televisao;
 
     /**
      * Construtor padrão da classe.
      * @param message mensagem da exception.
      * @param numCanal número do canal que deu origem a exception.
      */
-    public CanalInexitenteException(String message, int numCanal) {
+    public CanalInexitenteException(String message, int numCanal, Televisao televisao) {
         super(message);
         this.numCanal = numCanal;
+        this.televisao = televisao;
+    }
+
+    @Override
+    public String getMessage() {
+        return super.getMessage() + "{Tv Id: " + this.televisao.getId() + ", numCanal: " + numCanal + "}";
     }
 
 }

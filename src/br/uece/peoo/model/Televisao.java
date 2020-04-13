@@ -108,7 +108,7 @@ public abstract class Televisao {
         if (verificarCanalExistente(canalPossivel)) {
             this.canalAtual = canalPossivel;
         } else { // se não encontrar, dispara essa exception
-            throw new CanalInexitenteException("Canal não cadastrado." , num);
+            throw new CanalInexitenteException("Canal não cadastrado.", num, this);
         }
     }
 

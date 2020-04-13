@@ -1,9 +1,9 @@
 package br.uece.peoo;
 
+import br.uece.peoo.exceptions.TvJaCadastradaException;
 import br.uece.peoo.model.*;
 import br.uece.peoo.util.Menu;
 
-import java.sql.Array;
 import java.util.*;
 
 /**
@@ -56,8 +56,9 @@ public class Principal {
             // adicionando as TVs ao ControleRemoto
             controleRemoto.addTv(smartTV);
             controleRemoto.addTv(tvhd);
-        } catch (Exception e) {
-            e.printStackTrace();
+            controleRemoto.addTv(tvhd); // aqui corre uma TvJaCadastradaException
+        } catch (TvJaCadastradaException e) {
+            System.err.println(e.getMessage());
         }
 
     }
@@ -70,7 +71,7 @@ public class Principal {
         menu.addOption(1, "(+) Volume", () -> controleRemoto.aumentarVolume());
         menu.addOption(2, "(-) Volume", () -> controleRemoto.diminuirVolume());
         menu.addOption(3, "(+) Canal", () -> controleRemoto.proximoCanal());
-        menu.addOption(4, "(-) Canal", () -> controleRemoto.mostrarGrade());
+        menu.addOption(4, "(-) Canal", () -> controleRemoto.anteriorCanal());
         menu.addOption(5, "Sintonizar Canal", () -> sintonizarMenu());
 
         // opção para sair do programa
