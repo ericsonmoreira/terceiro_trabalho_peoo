@@ -44,14 +44,14 @@ public class ControleRemoto {
      * Aumenta o volume de todas tvs
      */
     public void aumentarVolume() {
-        this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.PROXIMO));
+        this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.UP));
     }
 
     /**
      * Diminui o volume de todas tvs
      */
     public void diminuirVolume() {
-        this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.ANTERIOR));
+        this.TVs.forEach(televisao -> televisao.alterarVolume(Televisao.COMANDO_TV.DOWN));
     }
 
     /**
@@ -75,14 +75,14 @@ public class ControleRemoto {
      * Muda o canal atual de todas tvs para o próximo canal.
      */
     public void proximoCanal() {
-        this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.PROXIMO));
+        this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.UP));
     }
 
     /**
      * Muda o canal aual de todas tvs para o canal anterior.
      */
     public void anteriorCanal() {
-        this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.ANTERIOR));
+        this.TVs.forEach(televisao -> televisao.alterarCanal(Televisao.COMANDO_TV.DOWN));
     }
 
     /**

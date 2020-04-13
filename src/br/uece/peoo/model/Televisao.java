@@ -13,7 +13,7 @@ public abstract class Televisao {
 
     // Enum que representa os comandos de aumentar e diminuir volume.
     public enum COMANDO_TV {
-        PROXIMO(1), ANTERIOR(-1);
+        UP(1), DOWN(-1);
         private int valor;
         COMANDO_TV(int valor) {
             this.valor = valor;
