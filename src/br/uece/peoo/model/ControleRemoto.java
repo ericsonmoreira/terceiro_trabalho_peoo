@@ -84,10 +84,13 @@ public class ControleRemoto {
     }
 
     /**
-     * Informa os dados de todas as tvs.
+     * Informa o nome, número e se é HD o canal atual de cada tv de suas Tvs.
      */
     public void informarDados() {
-        this.TVs.forEach(Televisao::informarDados);
+        this.TVs.forEach(televisao -> {
+            System.out.println("Tv Id: " + televisao.getId());
+            televisao.informarDados(); // mostra apenas o canal atual.
+        });
     }
 
     /**
