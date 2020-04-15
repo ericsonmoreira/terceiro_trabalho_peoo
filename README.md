@@ -10,15 +10,18 @@ Paulo Henrique Souza Filho                  |1509022
 ### Classes Usadas
 
 * Exceptions
-    * **CanalInexistenceException**
-    * **TvJaCadastradaException**
+    * **CanalInexistenceException**: Exception disparada quando se tenta adicionar um canal na lista de canais 
+    cadastrados em uma TV porém esse canal não está entre os canais disponíveis nessa TV.
+    * **TvJaCadastradaException**: Exception disparada quando se tenta adicionar uma TV já existente na lista de TVs que
+     um objeto ControleRemoto tem.
 * Model's:
-    * **Canal**
-    * **ControleRemoto**
-    * **SmartTV**
+    * **Canal**: Classe que representa um Canal de uma TV.
+    * **ControleRemoto**: Classe que representa uma controle remoto que pode manipular TVs.
+    * **SmartTV**: Subclasse de Televisão.
     * **Televisao**: Classe abstrata
-    * **TVHD**
+    * **TVHD**: Subclasse de Televisão.
 * Outras classes:
-    * **Menu**
-    * **Principal**
+    * **Menu**: Classe responsável por abistrair um menu. Usada para faciliar a adição e manipulação de opções no 
+    programa.
+    * **Principal**: Classe onde tem no método main.
     
