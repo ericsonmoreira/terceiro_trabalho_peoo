@@ -1,5 +1,7 @@
 # Terceiro Trabalho PEOO
 
+> Trabalho referente à disciplina PEOO 2019.2 da UECE.
+
 **Equipe**
 
 Nome                                        | Matrícula

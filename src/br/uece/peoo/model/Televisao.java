@@ -42,6 +42,10 @@ public abstract class Televisao {
         return volume;
     }
 
+    public ArrayList<Canal> getCanaisCadastrados() {
+        return canaisCadastrados;
+    }
+
     /**
      * Muda o volume da TV. O volume da tv não deve estar entre VOL_MAX e VOL_MIN.
      * @param voloume

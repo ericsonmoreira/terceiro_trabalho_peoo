@@ -2,8 +2,9 @@ package br.uece.peoo;
 
 import br.uece.peoo.exceptions.TvJaCadastradaException;
 import br.uece.peoo.model.*;
-import br.uece.peoo.util.Menu;
+import br.uece.peoo.view.ControleRemotoJFrame;
 
+import javax.swing.*;
 import java.util.*;
 
 /**
@@ -14,7 +15,6 @@ import java.util.*;
  * correspondente nas TVs é executado e o resultado é apresentado no console.
  */
 public class Principal {
-
     public static ArrayList<Canal> CANAIS; // Lista de Canais
 
     public static SmartTV smartTV; // smartTV
@@ -24,43 +24,18 @@ public class Principal {
     public static ControleRemoto controleRemoto; // controleRemoto
 
     public static void main(String[] args) {
-        init(); // iniciando as variáveis.
-
-        Menu menu = new Menu();
-
-        menu.addOption(1, "(+) Volume", () -> aumentarVolumeMenu());
-        menu.addOption(2, "(-) Volume", () -> diminuirVolumeMenu());
-        menu.addOption(3, "(+) Canal", () -> proximoCanalMenu());
-        menu.addOption(4, "(-) Canal", () -> anteriorCanalMenu());
-        menu.addOption(5, "Sintonizar Canal", () -> sintonizarMenu());
-        menu.addOption(6, "Informar Dados", () -> controleRemoto.informarDados());
-        menu.addOption(7, "Mostrar Grades", () -> controleRemoto.mostrarGrade());
-
-        // opção para sair do programa
-        menu.addOption(99, "Sair do Programa", () -> System.exit(0));
-
-        // mostrar a grade
-        controleRemoto.mostrarGrade();
-
-        // loop do programa
-        while (true) {
-            Scanner scanner = new Scanner(System.in);
-            menu.printMenu();
-            System.out.println("Digite a opção:");
-            try {
-                int op = scanner.nextInt();
-                menu.getRunnable(op).run();
-            } catch (InputMismatchException | NullPointerException err) {
-                System.err.println("Opção invalida");
-            }
-        }
+        init();
+        JFrame frame = new ControleRemotoJFrame(controleRemoto, CANAIS);
+        frame.setVisible(true);
+        frame.setResizable(false);
+        frame.pack();
     }
 
     /**
      * Inicializando variáveis.
      */
     public static void init() {
-        CANAIS = new ArrayList<Canal>();
+        CANAIS = new ArrayList<>();
         // criando canais
         // canais não HD
         CANAIS.add(new Canal(10, "Globo", false));
@@ -94,74 +69,6 @@ public class Principal {
             System.err.println(e.getMessage());
         }
 
-    }
-
-    /**
-     * Aumenta o volume em uma unidade para cada Tv e mostra o volume atual de cada uma.
-     */
-    public static void aumentarVolumeMenu() {
-        controleRemoto.aumentarVolume();
-        controleRemoto.getTVs().forEach(
-                tv -> System.out.println("{Tv id: " + tv.getId() + ", Volume: " + tv.getVolume() + "}")
-        );
-        System.out.println("Volumes alterados com sucesso");
-    }
-
-    /**
-     * Diminui o volume em uma unidade para cada Tv e mostra o volume atual de cada uma.
-     */
-    public  static void diminuirVolumeMenu() {
-        controleRemoto.diminuirVolume();
-        controleRemoto.getTVs().forEach(
-                tv -> System.out.println("{Tv id: " + tv.getId() + ", Volume: " + tv.getVolume() + "}")
-        );
-        System.out.println("Volumes alterados com sucesso");
-    }
-
-    /**
-     * Muda o canal atual de cada Tv para o próximo canal dos canais cadastrados da Tv respectiva.
-     */
-    public static void proximoCanalMenu() {
-        controleRemoto.proximoCanal();
-        controleRemoto.getTVs().forEach(
-                tv -> System.out.println("{Tv id: " + tv.getId() + ", Canal Atual: " + tv.getCanalAtual() + "}")
-        );
-        System.out.println("Canais Atuais alterados com sucesso");
-    }
-
-    /**
-     * Muda o canal atual de cada Tv para o canal anterior dos canais cadastrados da Tv respectiva.
-     */
-    public static void anteriorCanalMenu() {
-        controleRemoto.anteriorCanal();
-        controleRemoto.getTVs().forEach(
-                tv -> System.out.println("{Tv id: " + tv.getId() + ", Canal Atual: " + tv.getCanalAtual() + "}")
-        );
-        System.out.println("Canais Atuais alterados com sucesso");
-    }
-
-    /**
-     * Mostra a lista de canais disponíveis e (tenta) altera o canal atual de cada
-     * Tv do controle remoto de acordo com o canal escolhido. Caso uma tv do controle
-     * remoto não tenha o canal desejado em sua lista de canais cadastrados, mostra
-     * uma mensagem de erro.
-     */
-    public static void sintonizarMenu() {
-        // mostra os canais disponíveis.
-        System.out.println("Canais");
-        CANAIS.forEach(System.out::println);
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite o número do Canal desejado");
-        int numCanal = scanner.nextInt();
-        // para cada tv cadastrada do controle remoto, sintonizar o canal escolhido
-        Optional<Canal> optionalCanal = CANAIS.stream().filter(c -> c.getNumero() == numCanal).findFirst();
-        optionalCanal.ifPresentOrElse(
-                canal -> controleRemoto.sintonizarCanal(canal),
-                () -> System.err.println("Canal inválido")
-        );
-        controleRemoto.getTVs().forEach(
-                tv -> System.out.println("{Tv id: " + tv.getId() + ", Canal Atual: " + tv.getCanalAtual() + "}")
-        );
     }
 
 }
