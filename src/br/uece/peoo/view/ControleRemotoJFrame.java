@@ -288,7 +288,7 @@ public class ControleRemotoJFrame extends JFrame {
      * @param evt
      */
     private void sintonizarCanalJButtonActionPerformed(ActionEvent evt) {
-        if (this.canaisJComboBox.getSelectedItem().equals("<Selecione um Canall>")) {
+        if (this.canaisJComboBox.getSelectedItem().equals("<Selecione um Canal>")) {
             JOptionPane.showMessageDialog(this, "Escolha um Canal", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
             Canal canalSelecionado = (Canal) this.canaisJComboBox.getSelectedItem(); // Canal que foi selecionado.
