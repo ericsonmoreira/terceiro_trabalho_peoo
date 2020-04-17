@@ -39,7 +39,7 @@ public class ControleRemotoJFrame extends JFrame {
         initComponents();
         this.controleRemoto = controleRemoto;
         this.canais = canais;
-        this.canaisJComboBox.addItem("<Selecione um Canall>");
+        this.canaisJComboBox.addItem("<Selecione um Canal>");
         this.canais.forEach(canal -> this.canaisJComboBox.addItem(canal)); // adicionando os canais no canaisJComboBox
     }
 
