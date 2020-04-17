@@ -15,10 +15,19 @@ public class TVHD extends Televisao {
         LED, PLASMA, HD;
     }
 
+    public MODELO getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(MODELO modelo) {
+        this.modelo = modelo;
+    }
+
     private MODELO modelo; // Modelo da TVHD
 
-    public TVHD(String id, ArrayList<Canal> canaisDisponiveis) {
+    public TVHD(String id, ArrayList<Canal> canaisDisponiveis, MODELO modelo) {
         super(id, canaisDisponiveis);
+        this.modelo = modelo;
     }
 
     /**

@@ -15,8 +15,9 @@ public class SmartTV extends Televisao {
      * @param id identificador da classe. Exemplo: LG123
      * @param canaisDisponiveis lista de canis.
      */
-    public SmartTV(String id, ArrayList<Canal> canaisDisponiveis) {
+    public SmartTV(String id, ArrayList<Canal> canaisDisponiveis, int polegadas) {
         super(id, canaisDisponiveis);
+        this.polegadas = polegadas;
     }
 
     public int getPolegadas() {

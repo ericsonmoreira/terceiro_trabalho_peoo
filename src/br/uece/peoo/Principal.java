@@ -58,8 +58,8 @@ public class Principal {
 
         controleRemoto = new ControleRemoto();
 
-        smartTV = new SmartTV("PHILCO1010", CANAIS);
-        tvhd = new TVHD("HPHDTV2020", CANAIS);
+        smartTV = new SmartTV("PHILCO1010", CANAIS, 50); // 50 de polegadas
+        tvhd = new TVHD("HPHDTV2020", CANAIS, TVHD.MODELO.HD); // modelo HD
 
         smartTV.cadastrarCanais(CANAIS);
         tvhd.cadastrarCanais(CANAIS);

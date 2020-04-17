@@ -39,7 +39,8 @@ public class ControleRemotoJFrame extends JFrame {
         initComponents();
         this.controleRemoto = controleRemoto;
         this.canais = canais;
-        this.canais.forEach(canal -> this.canaisJComboBox.addItem(canal));
+        this.canaisJComboBox.addItem("<Selecione um Canall>");
+        this.canais.forEach(canal -> this.canaisJComboBox.addItem(canal)); // adicionando os canais no canaisJComboBox
     }
 
     @SuppressWarnings("unchecked")
@@ -66,12 +67,6 @@ public class ControleRemotoJFrame extends JFrame {
         outrasOpcoesJPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Canais"));
         outrasOpcoesJPanel.setToolTipText("");
         outrasOpcoesJPanel.setName(""); // NOI18N
-
-        canaisJComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                canaisJComboBoxActionPerformed(evt);
-            }
-        });
 
         sintonizarCanalJButton.setText("Sintonizar Canal");
         sintonizarCanalJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -206,76 +201,78 @@ public class ControleRemotoJFrame extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Chamado quando acionado o downVolumeJButton.
+     * @param evt
+     */
     private void downVolumeJButtonActionPerformed(ActionEvent evt) {
         String msg = "Antes\n";
         for (Televisao tv : this.controleRemoto.getTVs()) {
-            msg += tv.toString() + "\n";
+            msg += "TV{id=" + tv.getId() + ", volume=" + tv.getVolume() + "}\n";
         }
         this.controleRemoto.diminuirVolume();
         msg += "Depois\n";
         for (Televisao tv : this.controleRemoto.getTVs()) {
-            msg += tv.toString() + "\n";
+            msg += "TV{id=" + tv.getId() + ", volume=" + tv.getVolume() + "}\n";
         }
         JOptionPane.showMessageDialog(this, msg, "Auterar Volume", WIDTH);
     }
 
-    private void canaisJComboBoxActionPerformed(java.awt.event.ActionEvent evt) { /* Nada aqui.*/ }
-
+    /**
+     * Chamado quando acionado o upCanalJButton
+     * @param evt
+     */
     private void upCanalJButtonActionPerformed(ActionEvent evt) {
         String msg = "Antes\n";
         for (Televisao tv : this.controleRemoto.getTVs()) {
-            msg += tv.toString() + "\n";
+            msg += "TV{id=" + tv.getId() + ", canalAtual=" + tv.getCanalAtual() + "}\n";
         }
         this.controleRemoto.proximoCanal();
         msg += "Depois\n";
         for (Televisao tv : this.controleRemoto.getTVs()) {
-            msg += tv.toString() + "\n";
-        }
-        JOptionPane.showMessageDialog(this, msg, "Auterar Canal", WIDTH);
-    }
-
-    private void sintonizarCanalJButtonActionPerformed(ActionEvent evt) {
-        // TODO Mostrar o antes e o depois
-        this.controleRemoto.sintonizarCanal((Canal) this.canaisJComboBox.getSelectedItem());
-        String msg = this.canaisJComboBox.getSelectedItem().toString();
-        JOptionPane.showMessageDialog(this, msg, "Sintonizar Canal", WIDTH);
-    }
-
-    private void mostrarGradeJButtonActionPerformed(ActionEvent evt) {
-        String msg = "";
-        for (Televisao tv : this.controleRemoto.getTVs()) {
-            msg += tv.getId() + "\n";
-            msg = tv.getCanaisCadastrados().stream().map(canal -> canal + "\n").reduce(msg, String::concat);
-        }
-        JOptionPane.showMessageDialog(this, msg, "Grade de Canais", WIDTH);
-    }
-
-    private void upVolumeJButtonActionPerformed(ActionEvent evt) {
-        String msg = "Antes\n";
-        for (Televisao tv : this.controleRemoto.getTVs()) {
-            msg += tv.toString() + "\n";
-        }
-        this.controleRemoto.aumentarVolume();
-        msg += "Depois\n";
-        for (Televisao tv : this.controleRemoto.getTVs()) {
-            msg += tv.toString() + "\n";
-        }
-        JOptionPane.showMessageDialog(this, msg, "Auteração de Volume", WIDTH);
-    }
-
-    private void downCanalJButtonActionPerformed(ActionEvent evt) {
-        String msg = "Antes\n";
-        for (Televisao tv : this.controleRemoto.getTVs()) {
-            msg += tv.toString() + "\n";
-        }
-        this.controleRemoto.anteriorCanal();
-        msg += "Depois\n";
-        for (Televisao tv : this.controleRemoto.getTVs()) {
-            msg += tv.toString() + "\n";
+            msg += "TV{id=" + tv.getId() + ", canalAtual=" + tv.getCanalAtual() + "}\n";
         }
         JOptionPane.showMessageDialog(this, msg, "Auteração de Canal", WIDTH);
     }
 
+    /**
+     * Chamado quando acionado o upVolumeJButton
+     * @param evt
+     */
+    private void upVolumeJButtonActionPerformed(ActionEvent evt) {
+        String msg = "Antes\n";
+        for (Televisao tv : this.controleRemoto.getTVs()) {
+            msg += "TV{id=" + tv.getId() + ", volume=" + tv.getVolume() + "}\n";
+        }
+        this.controleRemoto.aumentarVolume();
+        msg += "Depois\n";
+        for (Televisao tv : this.controleRemoto.getTVs()) {
+            msg += "TV{id=" + tv.getId() + ", volume=" + tv.getVolume() + "}\n";
+        }
+        JOptionPane.showMessageDialog(this, msg, "Auteração de Volume", WIDTH);
+    }
+
+    /**
+     * Chamado quando acionado o downCanalJButton.
+     * @param evt
+     */
+    private void downCanalJButtonActionPerformed(ActionEvent evt) {
+        String msg = "Antes\n";
+        for (Televisao tv : this.controleRemoto.getTVs()) {
+            msg += "TV{id=" + tv.getId() + ", canalAtual=" + tv.getCanalAtual() + "}\n";
+        }
+        this.controleRemoto.anteriorCanal();
+        msg += "Depois\n";
+        for (Televisao tv : this.controleRemoto.getTVs()) {
+            msg += "TV{id=" + tv.getId() + ", canalAtual=" + tv.getCanalAtual() + "}\n";
+        }
+        JOptionPane.showMessageDialog(this, msg, "Auteração de Canal", WIDTH);
+    }
+
+    /**
+     * Chamado quando acionado o informarDadosJButton. Mostra as infromaçãos de cada Tv de controleRemoto.
+     * @param evt
+     */
     private void informarDadosJButtonActionPerformed(ActionEvent evt) {
         String msg = "Dados: \n";
         for (Televisao tv : this.controleRemoto.getTVs()) {
@@ -283,4 +280,44 @@ public class ControleRemotoJFrame extends JFrame {
         }
         JOptionPane.showMessageDialog(this, msg, "Informar Dados", WIDTH);
     }
+
+    /**
+     * Chamado quando acionado o sintonizarCanalJButton. Obtem o canal selecionado em canaisJComboBox e sintoniza
+     * esse canal em cada Tv do controleRemoto. Se a tv for uma {@link br.uece.peoo.model.TVHD} e o canal não for
+     * HD, então o canal Atual permanece o mesmo.
+     * @param evt
+     */
+    private void sintonizarCanalJButtonActionPerformed(ActionEvent evt) {
+        if (this.canaisJComboBox.getSelectedItem().equals("<Selecione um Canall>")) {
+            JOptionPane.showMessageDialog(this, "Escolha um Canal", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Canal canalSelecionado = (Canal) this.canaisJComboBox.getSelectedItem(); // Canal que foi selecionado.
+            String msg = "";
+            msg += "Canal selecionado=" + canalSelecionado + "\n";
+            msg += "Antes\n";
+            for (Televisao tv: controleRemoto.getTVs()) {
+                msg += "TV{id=" + tv.getId() + ", canalAtual=" + tv.getCanalAtual() + "}\n";
+            }
+            this.controleRemoto.sintonizarCanal(canalSelecionado);
+            msg += "Depois\n";
+            for (Televisao tv: controleRemoto.getTVs()) {
+                msg += "TV{id=" + tv.getId() + ", canalAtual=" + tv.getCanalAtual() + "}\n";
+            }
+            JOptionPane.showMessageDialog(this, msg, "Sintonizar Canal", WIDTH);
+        }
+    }
+
+    /**
+     * Chamado quando acionado o mostrarGradeJButton. Mostra a grade de canais de cada Tv do controleRemoto.
+     * @param evt
+     */
+    private void mostrarGradeJButtonActionPerformed(ActionEvent evt) {
+        String msg = "";
+        for (Televisao tv : this.controleRemoto.getTVs()) {
+            msg += tv.getId() + "\n";
+            msg = "\t" + tv.getCanaisCadastrados().stream().map(canal -> canal + "\n").reduce(msg, String::concat);
+        }
+        JOptionPane.showMessageDialog(this, msg, "Grade de Canais", WIDTH);
+    }
+
 }
