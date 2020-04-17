@@ -1,7 +1,5 @@
 package br.uece.peoo.model;
 
-import br.uece.peoo.model.Televisao;
-
 import java.util.ArrayList;
 import java.util.List;
 

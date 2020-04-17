@@ -1,11 +1,14 @@
 package br.uece.peoo;
 
 import br.uece.peoo.exceptions.TvJaCadastradaException;
-import br.uece.peoo.model.*;
+import br.uece.peoo.model.Canal;
+import br.uece.peoo.model.ControleRemoto;
+import br.uece.peoo.model.SmartTV;
+import br.uece.peoo.model.TVHD;
 import br.uece.peoo.view.ControleRemotoJFrame;
 
 import javax.swing.*;
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Crie uma classe Principal na qual vários canais são criados (varie entre HDs e não HDs).
@@ -15,6 +18,7 @@ import java.util.*;
  * correspondente nas TVs é executado e o resultado é apresentado no console.
  */
 public class Principal {
+
     public static ArrayList<Canal> CANAIS; // Lista de Canais
 
     public static SmartTV smartTV; // smartTV
@@ -24,7 +28,7 @@ public class Principal {
     public static ControleRemoto controleRemoto; // controleRemoto
 
     public static void main(String[] args) {
-        init();
+        init(); // Inicinado as variáveis.
         JFrame frame = new ControleRemotoJFrame(controleRemoto, CANAIS);
         frame.setVisible(true);
         frame.setResizable(false);
